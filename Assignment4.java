@@ -3,27 +3,45 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import java.util.Scanner;
 
 
 /**
 * Graphical user interface for Banking application
 *
 * Created by Dayan
-* Last Updated:
+* Last Updated: 12.Feb.2018
 */
 public class Assignment4 extends Application {
-  private Customer customer = new Customer("Dayan", 12231);
+  private Customer customer;
   private BankAccount bankAccount = new BankAccount(customer);
   private double newDeposit = 0;
   private double newWithdrawl = 0;
   private double accountBalance = bankAccount.getBalance();
 
+
+  //Added a setCustomer method - Dayan
+  public void setUserCustomer() {
+    String name;
+    int id;
+    System.out.println("Enter a customer Name: ");
+    Scanner keyName = new Scanner(System.in);
+    name = keyName.next();
+
+    System.out.println("Enter a customer ID number: ");
+    Scanner keyID = new Scanner(System.in);
+    id = keyID.nextInt();
+
+    customer = new Customer(name, id);
+  }
   //Main method
   public static void main(String[] args) {
     launch(args);
   }
 
   public void start(Stage primaryStage) {
+    setUserCustomer();
+
     StackPane root = new StackPane();
 
     //Vbox containing all hboxes

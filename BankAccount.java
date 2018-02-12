@@ -9,7 +9,7 @@ import java.util.InputMismatchException;
 
 public class BankAccount {
   private Customer customer;
-  private double balance = 50;
+  private double balance = 0;
   private double overdraftAmount = 100.0;
 
 
