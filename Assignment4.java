@@ -13,6 +13,13 @@ import java.util.Scanner;
 * Last Updated: 12.Feb.2018
 */
 public class Assignment4 extends Application {
+  private final int VBOX_WIDTH = 30;
+  private final int HBOX_WIDTH = 10;
+  private final int SCENE_WIDTH = 500; 
+  private final int SCENE_LENGTH = 300;
+  private final int TEXTFIELD_PREFERRED_WIDTH = 100;
+  private final int MATH_SIGN = 1;
+  
   private Customer customer;
   private BankAccount bankAccount = new BankAccount(customer);
   private double newDeposit = 0;
@@ -45,15 +52,15 @@ public class Assignment4 extends Application {
     StackPane root = new StackPane();
 
     //Vbox containing all hboxes
-    VBox vBox = new VBox(30);
+    VBox vBox = new VBox(VBOX_WIDTH); 
 
     //Hbox containing the balance and a label for it
-    HBox balanceBox = new HBox(10);
+    HBox balanceBox = new HBox(HBOX_WIDTH); 
     Label statBalance = new Label("Balance: " + accountBalance);
     balanceBox.getChildren().add(statBalance);
 
     //Hbox containing Customer info
-    HBox accountHolderBox = new HBox(10);
+    HBox accountHolderBox = new HBox(HBOX_WIDTH);
     Label accountHolderName = new Label("Account Holder Name: " + customer.getName());
     Label accountHolderID = new Label("Account ID: " + customer.getID());
     accountHolderBox.getChildren().addAll(accountHolderName, accountHolderID);
@@ -67,17 +74,17 @@ public class Assignment4 extends Application {
     //Vbox Containing the user input area
     VBox changeInMoney = new VBox();
     TextField entry = new TextField("Enter Withdrawl or Deposit Amount");
-    entry.setPrefWidth(100);
+    entry.setPrefWidth(TEXTFIELD_PREFERRED_WIDTH); 
     changeInMoney.getChildren().add(entry);
 
     //Create actions for buttons
     HandleButtonClick depositAction = new HandleButtonClick(statBalance, entry,
-                                                            bankAccount, 1);
+                                                            bankAccount, MATH_SIGN); 
     deposit.setOnAction(depositAction);
 
 
     HandleButtonClick withdrawlAction = new HandleButtonClick(statBalance, entry,
-                                                              bankAccount, -1);
+                                                              bankAccount, -MATH_SIGN);
     withdrawl.setOnAction(withdrawlAction);
 
 
@@ -85,7 +92,7 @@ public class Assignment4 extends Application {
 
     vBox.getChildren().addAll(accountHolderBox, balanceBox, buttons, changeInMoney);
     root.getChildren().add(vBox);
-    Scene scene = new Scene(root, 500, 300);
+    Scene scene = new Scene(root, SCENE_WIDTH, SCENE_LENGTH); 
 
     primaryStage.setTitle("BankAccount");
     primaryStage.setScene(scene);
